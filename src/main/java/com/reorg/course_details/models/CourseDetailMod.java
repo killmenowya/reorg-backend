@@ -23,7 +23,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Mod {
+public class CourseDetailMod {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
