@@ -2,6 +2,7 @@ package com.reorg.course_details.models;
 
 import java.sql.Date;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -28,7 +29,7 @@ public class CourseDetailMod {
     private String moduleCredit; //4
     private String department; //computing
     private String faculty; //computing
-    // private String workload; //[4,4,4,4,4]
+    // private int[] workload; //[4,4,4,4,4]
     // private String preclusion; //must pass a lvl math
     // private String SU; //no SU
     // private Date examDate; //yyyy-mm-ddThh:mm:ss:mssZ
