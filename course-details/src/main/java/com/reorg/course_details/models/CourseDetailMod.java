@@ -2,6 +2,9 @@ package com.reorg.course_details.models;
 
 import java.sql.Date;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.reorg.course_details.utils.WorkloadDeserializer;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -31,7 +34,8 @@ public class CourseDetailMod {
     private String moduleCredit; //4
     private String department; //computing
     private String faculty; //computing
-    // private int[] workload; //[4,4,4,4,4]
+    @JsonDeserialize(using = WorkloadDeserializer.class)
+    private String workload; //[4,4,4,4,4]
     // private String preclusion; //must pass a lvl math
     // private String SU; //no SU
     // private Date examDate; //yyyy-mm-ddThh:mm:ss:mssZ
