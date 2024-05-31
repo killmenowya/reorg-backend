@@ -1,11 +1,8 @@
 package com.reorg.course_details.models;
 
-import java.sql.Date;
-
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.reorg.course_details.utils.WorkloadDeserializer;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
