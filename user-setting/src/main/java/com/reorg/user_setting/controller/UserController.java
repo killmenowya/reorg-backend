@@ -1,4 +1,4 @@
-package com.reorg.user_details.controller;
+package com.reorg.user_setting.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

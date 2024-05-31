@@ -1,4 +1,4 @@
-package com.reorg.user_details.models;
+package com.reorg.user_setting.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
