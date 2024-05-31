@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,7 +15,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "Mod_details")
+@Table(name = "mod_details")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -25,6 +26,7 @@ public class CourseDetailMod {
     private long id;
     private String moduleCode; //cs1101
     private String title; //computing methodlogy 1
+    @Lob
     private String description; //shitty mod
     private String moduleCredit; //4
     private String department; //computing
