@@ -11,16 +11,22 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "User_details")
+@Table(name = "user_details")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDetails {
+public class User {
+    enum ColourPalette {
+        NORMAL,
+        DARK
+    }
+    
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private String userName;
     private String email;
+    private String username;
     private String password;
     private String alias;
+    private ColourPalette colourPalette;
+    private String dateFormat;
 }
