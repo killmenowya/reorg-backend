@@ -1,10 +1,12 @@
 package com.reorg.course_details.services;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import com.reorg.course_details.dto.CourseDetailDto;
 import com.reorg.course_details.models.CourseDetailMod;
 import com.reorg.course_details.repository.CourseRepository;
 
@@ -17,7 +19,7 @@ public class CourseService {
     private final CourseRepository courseRepository;
 
 
-    public CourseDetailMod[] getCourse(String acadYear) {
+    public CourseDetailMod[] downloadCourse(String acadYear) {
         // TODO: Periodic timer to pull data from third party
 
         CourseDetailMod[] apiResponse = webClient.get()
@@ -35,4 +37,10 @@ public class CourseService {
         return apiResponse;
     }
 
+    public List<CourseDetailDto> getCourse() {
+        return courseRepository.findAll().stream()
+            .map(course -> CourseDetailDto.builder().build()
+            ).toList();
+    }      
 }
+
