@@ -2,7 +2,6 @@ package com.reorg.course_details.services;
 
 import java.util.Arrays;
 
-import org.hibernate.mapping.Array;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
