@@ -32,8 +32,8 @@ public class UserController {
     }
 
     @GetMapping("/userByUsernameAndPassword")
-    public List<User> getUserByUsernameAndPassword(@RequestBody String username,
-                                                   @RequestBody String password) {
+    public List<User> getUserByUsernameAndPassword(@RequestParam String username,
+                                                   @RequestParam String password) {
         return userService.getUserByUsernameAndPassword(username, password);
     }
 
