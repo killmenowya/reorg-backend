@@ -2,7 +2,10 @@ package com.reorg.course_details.controller;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,8 +35,10 @@ public class CourseController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<CourseDetailDto> getAllMod() {
-        return courseService.getCourse();
+    public Page<CourseDetailDto> getAllMod(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        return courseService.getCourse(PageRequest.of(page, size));
     }
 }
  

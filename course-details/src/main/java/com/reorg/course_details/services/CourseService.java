@@ -3,6 +3,9 @@ package com.reorg.course_details.services;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -37,9 +40,11 @@ public class CourseService {
         return apiResponse;
     }
 
-    public List<CourseDetailDto> getCourse() {
-        return courseRepository.findAll().stream()
-            .map(course -> CourseDetailDto.builder()
+    public Page<CourseDetailDto> getCourse(Pageable pageable) {
+
+        Page<CourseDetailMod> coursePage = courseRepository.findAll(pageable);
+        
+        return coursePage.map(course -> CourseDetailDto.builder()
                                 .moduleCode(course.getModuleCode())
                                 .title(course.getTitle())
                                 .description(course.getDescription())
@@ -48,7 +53,7 @@ public class CourseService {
                                 .faculty(course.getFaculty())
                                 .workload(course.getWorkload())
                                 .build()
-            ).toList();
+            );
     }      
 }
 
