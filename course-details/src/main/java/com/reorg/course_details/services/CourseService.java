@@ -39,7 +39,15 @@ public class CourseService {
 
     public List<CourseDetailDto> getCourse() {
         return courseRepository.findAll().stream()
-            .map(course -> CourseDetailDto.builder().build()
+            .map(course -> CourseDetailDto.builder()
+                                .moduleCode(course.getModuleCode())
+                                .title(course.getTitle())
+                                .description(course.getDescription())
+                                .moduleCredit(course.getModuleCredit())
+                                .department(course.getDepartment())
+                                .faculty(course.getFaculty())
+                                .workload(course.getWorkload())
+                                .build()
             ).toList();
     }      
 }

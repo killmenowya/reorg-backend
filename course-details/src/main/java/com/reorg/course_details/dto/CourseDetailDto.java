@@ -16,7 +16,7 @@ public class CourseDetailDto {
     private String moduleCredit; //4
     private String department; //computing
     private String faculty; //computing
-    // private int[] workload; //[4,4,4,4,4]
+    private String workload; //[4,4,4,4,4]
     // private String preclusion; //must pass a lvl math
     // private String SU; //no SU
     // private Date examDate; //yyyy-mm-ddThh:mm:ss:mssZ
