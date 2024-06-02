@@ -3,7 +3,6 @@ package com.reorg.user_setting.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.reorg.user_setting.models.User;
 import com.reorg.user_setting.repo.UserRepository;
