@@ -3,7 +3,10 @@ package com.reorg.user_setting.service;
 import java.util.ArrayList;
 import java.util.List;
 
+<<<<<<< HEAD
 import org.springframework.stereotype.Service;
+=======
+>>>>>>> 348f259e23c5d452b1460113dca6a8fadaddefce
 
 import com.reorg.user_setting.models.User;
 import com.reorg.user_setting.repo.UserRepository;
