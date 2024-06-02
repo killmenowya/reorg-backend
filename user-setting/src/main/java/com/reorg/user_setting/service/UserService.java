@@ -3,11 +3,10 @@ package com.reorg.user_setting.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.reorg.user_setting.models.User;
 import com.reorg.user_setting.repo.UserRepository;
-import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
@@ -24,7 +23,7 @@ public class UserService {
 
     public List<User> getAllUsers() {
         Iterable<User> users = userRepository.findAll();
-        List<User> userList = new ArrayList<User>();
+        List<User> userList = new ArrayList<>();
         for (User user : users) {
             userList.add(user);
         }
@@ -33,6 +32,10 @@ public class UserService {
 
     public User getUserByEmail(String email) {
         return userRepository.findById(email).orElse(null);
+    }
+
+    public List<User> getUserByUsernameAndPassword(String username, String password) {
+        return userRepository.findByUsernameAndPassword(username, password);
     }
 
     public User updateUser(String email, User user) {

@@ -10,7 +10,6 @@ import com.reorg.user_setting.service.UserService;
 
 @RestController
 @RequestMapping("/api/user")
-@CrossOrigin
 public class UserController {
     private UserService userService;
 
@@ -28,12 +27,18 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-    @GetMapping("/email/{email}")
+    @GetMapping("/{email}")
     public User getUserByEmail(@PathVariable String email) {
         return userService.getUserByEmail(email);
     }
 
-    @PutMapping("/email/{email}")
+    @GetMapping("/userByUsernameAndPassword")
+    public List<User> getUserByUsernameAndPassword(@RequestBody String username,
+                                                   @RequestBody String password) {
+        return userService.getUserByUsernameAndPassword(username, password);
+    }
+
+    @PutMapping("/{email}")
     public User updateUser(@PathVariable String email, @RequestBody User user) {
         return userService.updateUser(email, user);
     }
