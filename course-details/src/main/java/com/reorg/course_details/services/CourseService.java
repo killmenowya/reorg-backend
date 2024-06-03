@@ -1,10 +1,8 @@
 package com.reorg.course_details.services;
 
 import java.util.Arrays;
-import java.util.List;
 
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -54,6 +52,10 @@ public class CourseService {
                                 .workload(course.getWorkload())
                                 .build()
             );
-    }      
+    }
+    
+    public CourseDetailDto searchCourse(String moduleCode) {
+        return courseRepository.findByModuleCode(moduleCode);
+    }
 }
 
