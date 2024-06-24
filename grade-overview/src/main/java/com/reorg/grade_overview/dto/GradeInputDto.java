@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 public class GradeInputDto {
 
     private double credit;
+    private String email;
     private String courseCode;
     private String title;
     private String gradeLetter;
