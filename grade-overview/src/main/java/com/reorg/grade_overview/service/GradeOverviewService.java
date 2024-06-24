@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.reorg.grade_overview.Utils.GradeConverter;
+import com.reorg.grade_overview.dto.GradeInputDto;
 import com.reorg.grade_overview.dto.GradeResponseDto;
 import com.reorg.grade_overview.models.GradeModel;
 import com.reorg.grade_overview.repository.GradeOverviewRepository;
@@ -29,6 +30,18 @@ public class GradeOverviewService {
         ).toList();
     }
 
+    public void postGrade(GradeInputDto gradeInputDto) {
+        GradeModel gradeModel = GradeModel.builder()
+                                .credit(gradeInputDto.getCredit())
+                                .email(gradeInputDto.getEmail())
+                                .courseCode(gradeInputDto.getCourseCode())
+                                .title(gradeInputDto.getTitle())
+                                .grade(gradeInputDto.getGradeLetter())
+                                .type(gradeInputDto.getType())
+                                .semester(gradeInputDto.getSemester())
+                                .build();
 
+        gradeOverviewRepository.save(gradeModel);
 
+    }
 }

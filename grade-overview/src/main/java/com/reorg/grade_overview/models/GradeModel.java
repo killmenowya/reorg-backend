@@ -6,6 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,11 +17,12 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class GradeModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private int credit; 
+    private double credit; 
     private String email;
     private String courseCode;
     private String title;
