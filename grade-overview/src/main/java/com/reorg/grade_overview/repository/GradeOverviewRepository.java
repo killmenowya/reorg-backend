@@ -15,4 +15,11 @@ public interface GradeOverviewRepository extends JpaRepository<GradeModel, Long>
     List<GradeModel> findGradeByUser(@Param("email") String username,
                                    @Param("semester")String semester);
 
+    @Query("SELECT SUM(g.credit) FROM GradeModel g WHERE g.email = :email")
+    Double sumCreditsByEmail(@Param("email") String email);
+
+    @Query("SELECT g FROM GradeModel g WHERE g.email = :email")
+    List<GradeModel> findAllGradeByUser(@Param("email") String email);
+
+
 }

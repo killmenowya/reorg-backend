@@ -37,6 +37,17 @@ public class gradeOverviewController {
     public void postGrade(@RequestBody GradeInputDto gradeInputDto) {
         gradeOverviewService.postGrade(gradeInputDto);
     }
+
+    @GetMapping("/GPA")
+    public double getGPA(@RequestParam String email) {
+        return gradeOverviewService.getGPA(email);
+    }
+
+    @GetMapping("/Units")
+    public double getTotalUnits(@RequestParam String email) {
+        return gradeOverviewService.getTotalUnits(email);
+    }
+    
     
 
 

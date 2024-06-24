@@ -44,4 +44,19 @@ public class GradeOverviewService {
         gradeOverviewRepository.save(gradeModel);
 
     }
+
+    public double getGPA(String email) {
+        List<GradeModel> grades = gradeOverviewRepository.findAllGradeByUser(email);
+        double totalPoints = 0.0;
+        int count = 0;
+        for (GradeModel grade : grades) {
+            totalPoints += GradeConverter.gradeToPoints(grade.getGrade());
+            count++;
+        }
+        return totalPoints/count;
+    }
+
+    public double getTotalUnits(String email) {
+        return gradeOverviewRepository.sumCreditsByEmail(email);
+    }
 }
