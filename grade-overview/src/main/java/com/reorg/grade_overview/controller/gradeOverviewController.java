@@ -15,6 +15,7 @@ import com.reorg.grade_overview.service.GradeOverviewService;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
@@ -36,6 +37,12 @@ public class gradeOverviewController {
     @ResponseStatus(HttpStatus.OK)
     public void postGrade(@RequestBody GradeInputDto gradeInputDto) {
         gradeOverviewService.postGrade(gradeInputDto);
+    }
+
+    @PutMapping("/update")
+    @ResponseStatus(HttpStatus.OK)
+    public void updateGrade(@RequestParam String email, @RequestParam String courseCode, @RequestParam String newGrade) {
+        gradeOverviewService.updateGrade(email, courseCode, newGrade);
     }
 
     @GetMapping("/GPA")

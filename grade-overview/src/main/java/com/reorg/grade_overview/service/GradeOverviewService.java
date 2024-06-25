@@ -3,6 +3,7 @@ package com.reorg.grade_overview.service;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.reorg.grade_overview.Utils.GradeConverter;
 import com.reorg.grade_overview.dto.GradeInputDto;
@@ -58,5 +59,10 @@ public class GradeOverviewService {
 
     public double getTotalUnits(String email) {
         return gradeOverviewRepository.sumCreditsByEmail(email);
+    }
+
+    @Transactional
+    public void updateGrade(String email, String courseCode, String newGrade) {
+        gradeOverviewRepository.updateGrade(email, courseCode, newGrade);
     }
 }
