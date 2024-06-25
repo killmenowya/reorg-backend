@@ -1,4 +1,4 @@
-package com.reorg.calendar.webConfig;
+package com.reorg.calendar.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

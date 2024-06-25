@@ -25,7 +25,7 @@ public class CourseController {
     private final CourseService courseService;
 
     @PostMapping
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.CREATED)
     public CourseDetailMod[] downloadAllMod(@RequestParam String acadYear) {
         return courseService.downloadCourse(acadYear);
     }

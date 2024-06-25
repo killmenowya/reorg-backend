@@ -34,7 +34,7 @@ public class gradeOverviewController {
     }//WTF WAS I WRITNG???
 
     @PostMapping
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.CREATED)
     public void postGrade(@RequestBody GradeInputDto gradeInputDto) {
         gradeOverviewService.postGrade(gradeInputDto);
     }

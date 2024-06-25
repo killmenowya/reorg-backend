@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.reorg.course_details.dto.CourseDetailDto;
 import com.reorg.course_details.models.CourseDetailMod;
 
 @Repository
@@ -16,5 +15,5 @@ public interface CourseRepository extends JpaRepository<CourseDetailMod, Long> {
     Page<CourseDetailMod> findAll(Pageable pageable);
 
     @Query("SELECT c FROM CourseDetailMod c WHERE c.moduleCode = :moduleCode")
-    CourseDetailDto findByModuleCode(@Param("moduleCode") String moduleCode);
+    CourseDetailMod findByModuleCode(@Param("moduleCode") String moduleCode);
 }

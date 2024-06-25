@@ -55,7 +55,17 @@ public class CourseService {
     }
     
     public CourseDetailDto searchCourse(String moduleCode) {
-        return courseRepository.findByModuleCode(moduleCode);
+        CourseDetailMod course = courseRepository.findByModuleCode(moduleCode);
+        return CourseDetailDto.builder()
+                            .moduleCode(course.getModuleCode())
+                            .title(course.getTitle())
+                            .description(course.getDescription())
+                            .moduleCredit(course.getModuleCredit())
+                            .department(course.getDepartment())
+                            .faculty(course.getFaculty())
+                            .workload(course.getWorkload())
+                            .build();
+
     }
 }
 
