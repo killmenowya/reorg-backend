@@ -40,7 +40,7 @@ public class CourseController {
 
     @GetMapping("/code")
     @ResponseStatus(HttpStatus.OK)
-    public CourseDetailDto searchCourse(@RequestParam String moduleCode) {
+    public CourseDetailDto[] searchCourse(@RequestParam String moduleCode) {
         return courseService.searchCourse(moduleCode); 
     }
 }

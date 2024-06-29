@@ -54,9 +54,9 @@ public class CourseService {
             );
     }
     
-    public CourseDetailDto searchCourse(String moduleCode) {
+    public CourseDetailDto[] searchCourse(String moduleCode) {
         CourseDetailMod course = courseRepository.findByModuleCode(moduleCode);
-        return CourseDetailDto.builder()
+        CourseDetailDto res =  CourseDetailDto.builder()
                             .moduleCode(course.getModuleCode())
                             .title(course.getTitle())
                             .description(course.getDescription())
@@ -65,6 +65,9 @@ public class CourseService {
                             .faculty(course.getFaculty())
                             .workload(course.getWorkload())
                             .build();
+        CourseDetailDto[] arr = new CourseDetailDto[1];
+        arr[0] = res;
+        return arr;
 
     }
 }

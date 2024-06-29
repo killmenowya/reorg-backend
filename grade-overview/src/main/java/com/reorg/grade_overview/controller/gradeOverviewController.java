@@ -31,19 +31,19 @@ public class gradeOverviewController {
     private List<GradeResponseDto> getGradeByUser(@RequestParam String email,
                                                     @RequestParam String sem) {
         return gradeOverviewService.getGradeByUser(email, sem);
-    }//WTF WAS I WRITNG???
+    }// gets semester data
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void postGrade(@RequestBody GradeInputDto gradeInputDto) {
         gradeOverviewService.postGrade(gradeInputDto);
-    }
+    }// adds a course
 
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.OK)
     public void updateGrade(@RequestParam String email, @RequestParam String courseCode, @RequestParam String newGrade) {
         gradeOverviewService.updateGrade(email, courseCode, newGrade);
-    }
+    }// updates course details
 
     @GetMapping("/GPA")
     public double getGPA(@RequestParam String email) {
