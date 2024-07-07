@@ -3,7 +3,6 @@ package com.reorg.calendar.controller;
 import java.util.Date;
 import java.util.List;
 
-import com.reorg.calendar.models.CourseDetailsMod;
 import com.reorg.calendar.models.Event;
 import com.reorg.calendar.models.LessonMod;
 import com.reorg.calendar.services.CalendarService;
