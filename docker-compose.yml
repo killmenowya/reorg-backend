@@ -1,0 +1,120 @@
+version: '3.8'
+
+networks:
+  my-network:
+    driver: bridge
+
+services:
+  mysql:
+    container_name: mysql
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: db_reorg
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: springuser
+      MYSQL_PASSWORD: Pass
+      # THIS WAS THE CAUSE OF MY PAIN!
+      MYSQL_TCP_PORT: 5431 
+    expose:
+      - "5431"
+    ports:
+      - "5431:5431"
+    restart: always
+    healthcheck:
+      test: mysqladmin ping -h 127.0.0.1 -u $$MYSQL_USER --password=$$MYSQL_PASSWORD
+      start_period: 5s
+      interval: 5s
+      timeout: 5s
+      retries: 55
+    networks:
+      - my-network
+
+  api-gateway:
+    container_name: api-gateway
+    image: reorg_apigateway:latest
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    depends_on:
+      - discovery
+    ports:
+      - "8181:8080"
+    expose:
+      - "8181"
+    networks:
+      - my-network
+  
+  discovery:
+    container_name: discovery
+    image: reorg_discovery:latest
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    ports:
+      - "8761:8761"
+    networks:
+      - my-network
+
+  course-details:
+    container_name: course-details
+    image: reorg_coursedetails:latest
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:5431/db_reorg?serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true
+    depends_on:
+      - mysql
+      - api-gateway
+    ports:
+      - "8081:8081"
+    networks:
+    - my-network
+  
+  calendar:
+    container_name: calendar
+    image: reorg_calendar:latest
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:5431/db_reorg?serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true
+    depends_on:
+      - mysql
+      - api-gateway
+    networks:
+    - my-network
+  
+  grade-overview:
+    container_name: grade-overview
+    image: reorg_gradeoverview:latest
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:5431/db_reorg?serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true
+    depends_on:
+      - mysql
+      - api-gateway
+    networks:
+    - my-network
+
+  journal:
+    container_name: journal
+    image: reorg_journal:latest
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:5431/db_reorg?serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true
+    depends_on:
+      - mysql
+      - api-gateway
+    networks:
+    - my-network
+  
+  user-settings:
+    container_name: user-settings
+    image: reorg_usersettings:latest
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:5431/db_reorg?serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true
+    depends_on:
+      - mysql
+      - api-gateway
+    networks:
+    - my-network
+
+
+
+

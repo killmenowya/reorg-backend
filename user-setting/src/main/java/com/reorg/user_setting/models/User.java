@@ -24,7 +24,7 @@ public class User {
     private String email;
     private String username;
     private String password;
-    private String alias;
+    private String alias;   
     // private ColourPalette colourPalette;
-    private String dateFormat;
+    // private String dateFormat;
 }
