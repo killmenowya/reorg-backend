@@ -62,8 +62,7 @@ services:
     depends_on:
       - mysql
       - api-gateway
-    ports:
-      - "8081:8081"
+    
     networks:
     - my-network
   
@@ -104,14 +103,16 @@ services:
     - my-network
   
   user-settings:
-    container_name: user-settings
-    image: reorg_usersettings:latest
+    container_name: user-setting
+    image: reorg_usersetting:latest
     environment:
       SPRING_PROFILES_ACTIVE: docker
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:5431/db_reorg?serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true
     depends_on:
       - mysql
       - api-gateway
+    ports:
+      - "8081:8081"
     networks:
     - my-network
 

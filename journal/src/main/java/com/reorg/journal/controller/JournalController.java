@@ -38,13 +38,13 @@ public class JournalController {
 
     @GetMapping("{date}")
     @ResponseStatus(HttpStatus.OK)
-    public JournalMod getJournalByDate(@PathVariable String date) {
+    public JournalDto getJournalByDate(@PathVariable String date) {
         return journalService.getJournalByDate(date);
     }
 
     @PostMapping
     public JournalDto postJournal(@RequestBody JournalDto journalDto) {
-        return journalService.postJournal(journalDto);
+        return journalService.postOrPutJournal(journalDto);
     }
     
     @DeleteMapping("{date}")

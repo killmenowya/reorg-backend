@@ -2,6 +2,7 @@ package com.reorg.journal.repository;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -28,4 +29,6 @@ public interface JournalRepo extends JpaRepository<JournalMod, Long> {
     @Transactional
     @Query("UPDATE JournalMod j SET j.title = :title, j.body = :body WHERE j.date = :date AND j.userEmail = :userEmail")
     void updateJournalByDateAndUserEmail(@Param("date") Date date, @Param("title") String title, @Param("body") String body, @Param("userEmail") String userEmail);
+
+    Optional<JournalMod> findByUserEmailAndDate(String userEmail, Date date);
 }

@@ -2,8 +2,10 @@ package com.reorg.journal.services;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.reorg.journal.dto.JournalDto;
 import com.reorg.journal.models.JournalMod;
@@ -28,9 +30,14 @@ public class JournalService {
                                     .build()).toList();
     }
 
-    public JournalMod getJournalByDate(String date) {
+    public JournalDto getJournalByDate(String date) {
         Date var = Date.valueOf(date);
-        return journalRepo.findByDate(var);
+        JournalMod data = journalRepo.findByDate(var);
+        return JournalDto.builder()
+                            .userEmail(data.getUserEmail())
+                            .title(data.getTitle())
+                            .body(data.getBody())
+                            .build();
     }
 
     public JournalDto postJournal(JournalDto journalDto) {
@@ -49,9 +56,21 @@ public class JournalService {
         journalRepo.deleteByDateAndUserEmail(var, userEmail);
     }
 
+    @Transactional
     public JournalDto updateJournal(JournalDto journalDto) {
         journalRepo.updateJournalByDateAndUserEmail(Date.valueOf(journalDto.getDate()), journalDto.getTitle(), journalDto.getBody(), journalDto.getUserEmail());
         return journalDto;
+    }
+
+    public JournalDto postOrPutJournal(JournalDto journalDto) {
+        Date journalDate = Date.valueOf(journalDto.getDate());
+        Optional<JournalMod> existingEntry = journalRepo.findByUserEmailAndDate(journalDto.getUserEmail(), journalDate);
+
+        if (existingEntry.isPresent()) {
+            return updateJournal(journalDto); // Update if entry exists
+        } else {
+            return postJournal(journalDto); // Create if no entry exists
+        }
     }
 
  

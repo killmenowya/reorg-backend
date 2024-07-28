@@ -22,6 +22,11 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-gateway</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>5.3.23</version> <!-- use the appropriate version -->
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
